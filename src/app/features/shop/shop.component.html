@@ -1,0 +1,78 @@
+<section >
+  <div>
+  <div class="w-full bg-linear-to-r from-[#17ad58] via-[#22c55e] to-[#2bd671] py-10 px-6 md:px-16 text-white font-sans">
+  <nav class="flex items-center space-x-2 text-xs md:text-sm mb-5 opacity-90">
+    <a class=" hover:text-white text-dark-soft  font-medium"  routerLink="/">Home</a>
+    <span class="opacity-60">/</span>
+    <span class="font-medium">All Products</span>
+  </nav>
+
+  <div class="flex items-center gap-4 md:gap-6">
+    
+    <div class="shrink-0 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-white/20 backdrop-blur-md rounded-[1.25rem] border border-white/25 shadow-lg">
+      
+      <i class="fa-solid fa-box-open text-2xl md:text-3xl text-white"></i>
+
+    </div>
+
+    <div class="flex flex-col">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
+        All Products
+      </h1>
+      <p class="text-sm md:text-base opacity-90 mt-0.5 font-light">
+        Explore our complete product collection
+      </p>
+    </div>
+  </div>
+  </div>
+<div class="mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-5">
+@for (product of productList() | paginate: { id: 'foo',
+                                                      itemsPerPage: pageSize(),
+                                                      currentPage: cp(),
+                                                      totalItems: total() }; track product._id) {
+<app-card [product]="product"></app-card>
+}
+
+        </div>
+<!-- <div class="flex justify-center items-center my-4">
+          <pagination-controls  id="foo"
+                      (pageChange)="pageChanged($event)"
+                      [maxSize]="9"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div> -->
+<pagination-template #p="paginationApi" id="foo" (pageChange)="pageChanged($event)">
+  <div class="flex items-center justify-center gap-2 my-8 font-sans">
+    
+    <button [disabled]="p.isFirstPage()" (click)="p.previous()"
+            class="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+      <i class="fas fa-chevron-left me-2 text-xs"></i> Previous
+    </button>
+
+    <div class="flex items-center gap-1">
+      @for (page of p.pages; track page.label) {
+        <button (click)="p.setCurrent(page.value)"
+                [class]="p.getCurrent() === page.value 
+                  ? 'w-10 h-10 flex items-center justify-center rounded-xl bg-emerald-600 text-white font-bold shadow-md scale-110 z-10' 
+                  : 'w-10 h-10 flex items-center justify-center rounded-xl border border-gray-100 text-gray-600 hover:border-emerald-600 hover:text-emerald-600 transition-all bg-white'">
+          {{ page.label }}
+        </button>
+      }
+    </div>
+
+    <button [disabled]="p.isLastPage()" (click)="p.next()"
+            class="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-emerald-50 hover:text-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+      Next <i class="fas fa-chevron-right ms-2 text-xs"></i>
+    </button>
+    
+  </div>
+</pagination-template>
+</div>
+</section>

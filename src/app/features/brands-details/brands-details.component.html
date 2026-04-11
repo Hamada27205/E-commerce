@@ -1,0 +1,62 @@
+<div class="mt-5 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
+    <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm 
+  hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]
+  transition-all duration-300 ease-out
+  group font-sans h-full flex flex-col justify-between"
+>
+  <div>
+    <div class="relative overflow-hidden mb-4 aspect-square bg-gray-50 rounded-xl flex items-center justify-center">
+      <img
+        [src]="brandsid().imageCover"
+        [alt]="brandsid().title"
+        class="max-h-[90%] w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+      />
+
+      <div class="absolute top-2 right-2 flex flex-col gap-2 transition-opacity duration-300">
+        <button class="w-10 h-10 bg-white shadow-md border border-gray-50 rounded-full flex items-center justify-center text-gray-600 hover:bg-emerald-600 hover:text-white transition-all">
+          <i class="far fa-heart"></i>
+        </button>
+        <button class="w-10 h-10 bg-white shadow-md border border-gray-50 rounded-full flex items-center justify-center text-gray-600 hover:bg-emerald-600 hover:text-white transition-all">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+        <button
+          class="w-10 h-10 bg-white shadow-md border border-gray-50 rounded-full flex items-center justify-center text-gray-600 hover:bg-emerald-600 hover:text-white transition-all">
+          <i class="far fa-eye"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <p class="text-sm text-emerald-600 font-medium tracking-wide">name</p>
+
+      <h3 class="text-base font-bold text-slate-800 hover:text-emerald-600 cursor-pointer transition-colors line-clamp-2 min-h-[3rem] leading-snug">
+        {{brandsid().title}}
+      </h3>
+
+      <div class="flex items-center gap-2">
+        <div class="flex text-yellow-400 text-xs gap-0.5">
+@for (starClass of stars(); track $index) {
+      <i [class]="starClass"></i>
+    }
+        </div>
+        <span class="text-xs text-gray-500 font-medium">
+         {{brandsid().ratingsAverage}} 
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between pt-5 mt-auto border-t border-gray-50">
+    <div class="flex flex-col">
+      <span class="text-lg font-extrabold text-slate-900">{{brandsid().price}} <span class="text-sm font-semibold">EGP</span></span>
+    </div>
+
+    <button 
+      class="w-11 h-11 cursor-pointer bg-emerald-600 text-white rounded-xl flex items-center justify-center hover:bg-emerald-700 transition-colors shadow-sm active:scale-90">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- (click)="addCart(product()._id)" -->
