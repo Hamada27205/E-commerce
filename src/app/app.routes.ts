@@ -26,7 +26,6 @@ export const routes: Routes = [
     path: "brands-details/:id/:slug",
     loadComponent: () => import('./features/brands-details/brands-details.component').then(m => m.BrandsDetailsComponent),
     title: "brands-details page",
-    data: { renderMode: 'server' }
   },
   {
     path: "cart",
@@ -39,13 +38,12 @@ export const routes: Routes = [
     loadComponent: () => import('./features/checkout/checkout.component').then(m => m.CheckoutComponent),
     title: "Checkout page",
     canActivate:[authGuard],
-    data: { renderMode: 'server' }
   },
   {
     path: "details/:id/:slug",
     loadComponent: () => import('./features/details/details.component').then(m => m.DetailsComponent),
     title: "Details page",
-    data: { renderMode: 'server' }
+
   },
   {
     path: "login",
